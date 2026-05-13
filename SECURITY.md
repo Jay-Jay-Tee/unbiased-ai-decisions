@@ -4,102 +4,172 @@
 
 ## 📌 Supported Versions
 
-This project is primarily intended for educational and internship evaluation purposes.
-
-Security updates and maintenance may be limited.
+The latest version of Unveil is actively maintained for security and stability improvements.
 
 | Version | Supported |
 |---|---|
-| Latest | ✅ |
-| Older Versions | ❌ |
+| Latest Release | ✅ |
+| Older Releases | ❌ |
 
 ---
 
-# 🚨 Reporting a Vulnerability
+# 🔒 Reporting a Vulnerability
 
 If you discover a security vulnerability, please report it responsibly.
 
-Please include:
+Include:
 - vulnerability description
+- affected component(s)
 - reproduction steps
-- potential impact
-- affected files/components
-- screenshots/logs if relevant
+- possible impact
+- screenshots/logs if applicable
+
+Please avoid publicly disclosing vulnerabilities before they are reviewed.
 
 ---
 
-# 🔒 Responsible Disclosure
+# ⚠️ Security Scope
 
-Please do NOT:
-- publicly disclose vulnerabilities immediately
-- exploit vulnerabilities maliciously
-- leak sensitive information
+Unveil includes:
+- AI/ML pipelines
+- explainability systems
+- API endpoints
+- Firebase integrations
+- Gemini-based classification systems
+- model evaluation workflows
 
-Responsible disclosure helps maintain project integrity and safety.
-
----
-
-# 🛠 Security Considerations
-
-This repository may include:
-- machine learning workflows
-- experimental notebooks
-- research-oriented implementations
-- educational prototypes
-
-Some components may not be production hardened.
+Security considerations apply to:
+- data handling
+- model integrity
+- inference APIs
+- credential management
+- dataset exposure
+- prompt injection risks
 
 ---
 
-# ⚠️ Disclaimer
+# 🔑 Secrets & Credentials
 
-This repository is:
-- an internship task submission
-- an educational implementation
-- not intended for production deployment without additional security review
+Never commit:
+- API keys
+- Firebase credentials
+- `.env` files
+- access tokens
+- production secrets
 
-Users should:
-- validate all outputs
-- review dependencies carefully
-- avoid exposing sensitive credentials
-- use secure environment management practices
+Use:
+- `.env.example`
+- environment variables
+- secret management systems
+
+Before pushing code:
+
+```bash
+git status
+```
+
+Verify sensitive files are excluded.
 
 ---
 
-# 🔑 Best Practices
+# 🧠 AI & ML Security Considerations
 
-Recommended practices for contributors:
+Contributors should be aware of:
 
-- never commit API keys or secrets
-- use `.env` files for credentials
-- validate external inputs
-- keep dependencies updated
-- review notebook outputs before publishing
+## Prompt Injection Risks
+LLM-integrated systems may be vulnerable to:
+- prompt manipulation
+- jailbreak attempts
+- malicious inputs
+
+Validate and sanitize external inputs wherever possible.
+
+---
+
+## Model Integrity
+Avoid:
+- unverified model artifacts
+- unsafe pickle loading
+- untrusted serialized objects
+
+Only use trusted model files and validated sources.
+
+---
+
+## Bias & Fairness Risks
+Because Unveil analyzes fairness and explainability:
+- outputs should not be treated as absolute truth
+- fairness metrics should be interpreted carefully
+- datasets may contain historical bias
+
+Always document assumptions and limitations.
+
+---
+
+# 🌐 API Security
+
+Recommended practices:
+- validate request payloads
+- sanitize user inputs
+- rate-limit endpoints where appropriate
+- avoid exposing internal stack traces
+- use secure authentication for production deployments
 
 ---
 
 # 📦 Dependency Security
 
-Before deployment or reuse:
-- audit dependencies
-- scan for vulnerabilities
-- verify package integrity
-- pin stable package versions where possible
+Before deployment:
+- audit dependencies regularly
+- keep packages updated
+- avoid abandoned libraries
+- review transitive dependencies
+
+Recommended:
+
+```bash
+pip list --outdated
+npm audit
+```
 
 ---
 
-# 🤝 Security Philosophy
+# 🛡 Frontend Security
 
-The project values:
-- responsible experimentation
-- ethical AI development
-- secure coding practices
-- transparency in implementation
+Frontend contributors should:
+- avoid exposing secrets in client-side code
+- sanitize rendered content
+- validate uploaded data
+- avoid insecure DOM injection patterns
+
+---
+
+# ⚖️ Responsible Disclosure
+
+Please do NOT:
+- exploit vulnerabilities maliciously
+- expose private datasets
+- leak credentials
+- publicly disclose unpatched vulnerabilities
+
+Responsible disclosure helps protect contributors and users.
+
+---
+
+# 📌 Disclaimer
+
+Unveil is primarily an educational and research-oriented AI transparency project.
+
+It is not guaranteed to be production hardened without additional:
+- security review
+- infrastructure hardening
+- authentication systems
+- deployment safeguards
 
 ---
 
 # 🚀 Final Note
 
-Security is a shared responsibility.
+Security, transparency, and responsible AI development are shared responsibilities.
 
-Thank you for helping improve the safety and reliability of this project.
+Thank you for helping make Unveil safer and more trustworthy.
