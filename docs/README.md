@@ -1,4 +1,4 @@
-﻿# Unveil - AI Bias Auditing Platform
+# Unveil - AI Bias Auditing Platform
 
 > **Uncover the bias hiding in your data.**  
 > Upload a dataset or ML model. Unveil finds unfair outcomes across sensitive attributes, explains what's driving them, and produces a plain-English compliance report - in under a minute.
@@ -60,55 +60,64 @@ Unveil was built specifically to surface that second layer. It's not enough to r
 ```
 unveil/
 │
-├-- src/                          # React frontend
-│   ├-- pages/
-│   │   ├-- Landing.jsx           # Homepage / marketing
-│   │   ├-- Upload.jsx            # File upload + analysis orchestration
-│   │   ├-- DatasetAudit.jsx      # Per-column bias results
-│   │   ├-- ModelAudit.jsx        # Model fairness + SHAP chart
-│   │   ├-- Report.jsx            # Gemini compliance narrative
-│   │   ├-- Dashboard.jsx         # Saved audit history
-│   │   ├-- Glossary.jsx          # Plain-English term definitions
-│   │   ├-- Login.jsx
-│   │   └-- SignUp.jsx
+├── src/                          # React frontend
+│   ├── pages/
+│   │   ├── Landing.jsx           # Homepage / marketing
+│   │   ├── Upload.jsx            # File upload + analysis orchestration
+│   │   ├── DatasetAudit.jsx      # Per-column bias results
+│   │   ├── ModelAudit.jsx        # Model fairness + SHAP chart
+│   │   ├── Report.jsx            # Gemini compliance narrative
+│   │   ├── Dashboard.jsx         # Saved audit history
+│   │   ├── Glossary.jsx          # Plain-English term definitions
+│   │   ├── Login.jsx
+│   │   └── SignUp.jsx
 │   │
-│   ├-- components/
-│   │   ├-- Navbar.jsx
-│   │   ├-- ColumnCard.jsx        # Per-column bias breakdown card
-│   │   ├-- BiasGauge.jsx         # Visual fairness ratio indicator
-│   │   ├-- SliceChart.jsx        # Per-group approval rate bar chart
-│   │   ├-- ShapChart.jsx         # SHAP feature importance chart
-│   │   ├-- ProxyAlert.jsx        # Proxy column warning banner
-│   │   └-- GeminiReport.jsx      # Report renderer
+│   ├── components/
+│   │   ├── Navbar.jsx
+│   │   ├── ColumnCard.jsx        # Per-column bias breakdown card
+│   │   ├── BiasGauge.jsx         # Visual fairness ratio indicator
+│   │   ├── SliceChart.jsx        # Per-group approval rate bar chart
+│   │   ├── ShapChart.jsx         # SHAP feature importance chart
+│   │   ├── ProxyAlert.jsx        # Proxy column warning banner
+│   │   └── GeminiReport.jsx      # Report renderer
 │   │
-│   └-- lib/
-│       ├-- api.js                # Frontend → backend HTTP client
-│       ├-- gemini.js             # Direct Gemini API fallback (browser-side)
-│       ├-- auth.js               # Firebase Auth + local account mode
-│       ├-- storage.js            # Firestore + localStorage audit persistence
-│       ├-- AuditContext.jsx      # Global audit state (React context)
-│       └-- fileParser.js         # Client-side CSV/XLSX preview
+│   └── lib/
+│       ├── api.js                # Frontend → backend HTTP client
+│       ├── gemini.js             # Direct Gemini API fallback (browser-side)
+│       ├── auth.js               # Firebase Auth + local account mode
+│       ├── storage.js            # Firestore + localStorage audit persistence
+│       ├── AuditContext.jsx      # Global audit state (React context)
+│       └── fileParser.js         # Client-side CSV/XLSX preview
 │
-├-- backend/
-│   ├-- api.py                    # FastAPI routes (HTTP only - no business logic)
-│   ├-- pipeline.py               # Analysis orchestration (Part A + Part B)
-│   ├-- ingestor.py               # File ingestion → normalized DataFrame
-│   ├-- gemini_classifier.py      # Column classification via Gemini + rules fallback
-│   ├-- proxy_detection.py        # Cramér's V + mutual information proxy detection
-│   ├-- stats.py                  # Disparate impact, p-values, per-group stats
-│   ├-- slice_eval.py             # Per-group approval rate / FPR / FNR calculation
-│   ├-- counterfactual_engine.py  # Row cloning + attribute flipping for model probing
-│   ├-- probe_generator.py        # Black-box model probing (100+ probes / attribute)
-│   ├-- shap_explainer.py         # TreeExplainer / KernelExplainer wrapper
-│   ├-- train_demo_model.py       # Script to (re)train the bundled demo model
-│   └-- demo_model.pkl            # Pre-trained sklearn model on UCI Adult
+├── backend/
+│   ├── api.py                    # FastAPI routes (HTTP only - no business logic)
+│   ├── pipeline.py               # Analysis orchestration (Part A + Part B)
+│   ├── ingestor.py               # File ingestion → normalized DataFrame
+│   ├── gemini_classifier.py      # Column classification via Gemini + rules fallback
+│   ├── proxy_detection.py        # Cramér's V + mutual information proxy detection
+│   ├── stats.py                  # Disparate impact, p-values, per-group stats
+│   ├── slice_eval.py             # Per-group approval rate / FPR / FNR calculation
+│   ├── counterfactual_engine.py  # Row cloning + attribute flipping for model probing
+│   ├── probe_generator.py        # Black-box model probing (100+ probes / attribute)
+│   ├── shap_explainer.py         # TreeExplainer / KernelExplainer wrapper
+│   ├── train_demo_model.py       # Script to (re)train the bundled demo model
+│   └── demo_model.pkl            # Pre-trained sklearn model on UCI Adult
 │
-├-- start.sh                      # macOS / Linux startup script
-├-- start.bat                     # Windows CMD startup script
-├-- start.ps1                     # Windows PowerShell startup script
-├-- requirements.txt              # Python dependencies
-├-- package.json                  # Node dependencies
-└-- adult.csv                     # UCI Adult Income dataset (sample)
+├── data/
+│   ├── adult.csv                 # UCI Adult Income dataset (raw)
+│   └── adult_fixed.csv           # UCI Adult Income dataset (cleaned)
+│
+├── models/
+│   └── adult_demo_model.pkl      # Pre-trained demo model for sample audit flow
+│
+├── setup/
+│   ├── start.sh                  # macOS / Linux startup script
+│   ├── start.bat                 # Windows CMD startup script
+│   └── start.ps1                 # Windows PowerShell startup script
+│
+├── docs/requirements.txt         # Python dependencies
+├── package.json                  # Node dependencies
+└── docs/                         # Documentation
 ```
 
 ---
@@ -170,8 +179,8 @@ Sections are generated independently. If one hits a rate limit, the others still
 ### 1. Clone the repo
 
 ```bash
-git clone https://github.com/Jay-Jay-Tee/unbiased-ai-decisions.git
-cd unbiased-ai-decisions
+git clone https://github.com/Jay-Jay-Tee/unveil.git
+cd unveil
 ```
 
 ### 2. Install dependencies
@@ -181,14 +190,21 @@ cd unbiased-ai-decisions
 npm install
 
 # Backend
-pip install -r requirements.txt
+pip install -r docs/requirements.txt
 ```
 
 ### 3. Create a `.env` file
 
+```bash
+cp .env.example .env
+```
+
+Then edit `.env` with at least your Gemini key:
+
 ```env
 # Required
 VITE_GEMINI_API_KEY=your_gemini_api_key_here
+GEMINI_API_KEY=your_gemini_api_key_here
 
 # Backend URL - leave as-is for local development
 VITE_API_URL=http://localhost:8001/api
@@ -210,29 +226,39 @@ VITE_API_URL=http://localhost:8001/api
 
 **macOS / Linux:**
 ```bash
-bash start.sh
+chmod +x setup/start.sh
+./setup/start.sh
 ```
 
 **Windows (CMD):**
 ```bat
-start.bat
+setup\start.bat
 ```
 
 **Windows (PowerShell):**
 ```powershell
-.\start.ps1
+.\setup\start.ps1
 ```
 
 The scripts check for dependencies, install anything missing, and start both services:
 - Frontend → [http://localhost:5173](http://localhost:5173)
 - Backend API → [http://localhost:8001](http://localhost:8001)
 
+**Manual startup (any OS):**
+```bash
+# Terminal 1
+npm run frontend
+
+# Terminal 2
+npm run backend
+```
+
 ---
 
 ## Running an audit
 
 1. **Create an account** (or continue as guest - audits won't be saved in guest mode)
-2. **Upload a dataset** - drag a CSV, XLSX, or JSON file onto the upload zone. `adult.csv` in the repo root is a ready-to-use example.
+2. **Upload a dataset** - drag a CSV, XLSX, or JSON file onto the upload zone. `data/adult.csv` in the repo is a ready-to-use example.
 3. Optionally **upload a model** - a `.pkl` sklearn model. If you skip this, Unveil audits the dataset only.
 4. Hit **Run audit** - the status panel shows each step as it completes.
 5. View results on the **Dataset Audit** page - columns are sorted by severity, each with its fairness ratio, approval gap, per-group chart, and proxy strength.
@@ -287,9 +313,13 @@ python -m pytest tests/
 | Variable | Required | Description |
 |----------|----------|-------------|
 | `VITE_GEMINI_API_KEY` | **Yes** | Gemini API key - get one free at aistudio.google.com |
+| `GEMINI_API_KEY` | **Yes** | Gemini API key for the backend |
 | `VITE_API_URL` | No | Backend base URL. Default: `/api` (proxied by Vite) |
 | `VITE_REQUIRE_AUTH_FOR_ANALYSIS` | No | Set `false` to skip auth checks locally |
 | `VITE_USE_MOCK` | No | Set `false` to disable mock data fallback when backend is offline |
+| `AUTH_REQUIRED` | No | Set `false` on backend to skip Firebase token checks locally |
+| `ALLOW_LOCALHOST_CORS` | No | Set `false` in production to disallow localhost origins |
+| `FIREBASE_SERVICE_ACCOUNT_PATH` | No | Absolute path to Firebase service account JSON |
 | `VITE_FIREBASE_API_KEY` | No | Firebase project API key |
 | `VITE_FIREBASE_AUTH_DOMAIN` | No | e.g. `your-project.firebaseapp.com` |
 | `VITE_FIREBASE_PROJECT_ID` | No | Your Firebase project ID |
