@@ -1,5 +1,5 @@
-﻿# Unveil — Project File Tree
-
+# Unveil — Project File Tree
+ 
 ```
 unveil-main/
 ├── .env.example                   # Environment variable template (Firebase, Gemini keys)
@@ -30,7 +30,7 @@ unveil-main/
 │   ├── demo_model.pkl             # Lightweight demo model (used in dev/testing)
 │   └── train_demo_model.py        # Script to regenerate demo_model.pkl
 │
-├── data/                          # Sample datasets (large files not committed by default)
+├── data/                          # Sample datasets
 │   ├── adult.csv                  # UCI Adult Income dataset (raw)
 │   └── adult_fixed.csv            # UCI Adult Income dataset (cleaned)
 │
@@ -115,19 +115,21 @@ unveil-main/
 │   ├── test_m2.py                 # M2 bias-metric unit tests
 │   └── shap_tester.py             # SHAP explainer smoke tests
 │
-├── src/__tests__/                 # Frontend Jest tests
+├── src/__tests__/                 # Frontend Vitest tests
 │   ├── SeverityBadge.test.jsx     # SeverityBadge component unit tests
 │   ├── api.test.js                # API client unit tests
 │   ├── terminology.test.js        # Terminology lookup tests
-│   └── setup.js                   # Jest global test setup
+│   └── setup.js                   # Vitest global test setup
 │
 └── docs/
     ├── README.md                  # Project overview and quick-start
     ├── HOW_TO_RUN.md              # Detailed local dev setup instructions
     ├── file_tree.md               # This file
+    ├── requirements.txt           # Python dependencies
     └── problem_statement.md       # Original brief and design rationale
 ```
-
+ 
 ## Local Testing
-
-> use `adult_fixed.csv` and the bundled `adult_demo_model.pkl` for the sample audit flow.
+ 
+> Use `data/adult_fixed.csv` and the bundled `models/adult_demo_model.pkl` for the sample audit flow.
+ 
