@@ -1,4 +1,4 @@
-﻿# HOW_TO_RUN
+# HOW_TO_RUN
 
 This file is the one-stop guide for local development.
 
@@ -14,8 +14,8 @@ This file is the one-stop guide for local development.
 ### 1) Clone and install dependencies
 
 ```bash
-git clone https://github.com/Jay-Jay-Tee/unbiased-ai-decisions.git
-cd unbiased-ai-decisions
+git clone https://github.com/Jay-Jay-Tee/unveil.git
+cd unveil
 
 npm install
 python -m pip install -r docs/requirements.txt
@@ -27,7 +27,7 @@ python -m pip install -r docs/requirements.txt
 cp .env.example .env
 ```
 
-Update `.env` with at least Gemini keys:
+Update `.env` with at least your Gemini keys:
 
 ```env
 VITE_GEMINI_API_KEY=your_gemini_api_key_here
@@ -61,32 +61,32 @@ FIREBASE_SERVICE_ACCOUNT_PATH=/absolute/path/to/service-account.json
 
 ## STARTUP
 
-Use one of the startup scripts from repo root. They start frontend and backend together.
+Use one of the startup scripts from the `setup/` folder. They start frontend and backend together.
 
 ### Windows CMD
 
 ```bat
-start.bat
+setup\start.bat
 ```
 
 ### Windows PowerShell
 
 ```powershell
-.\start.ps1
+.\setup\start.ps1
 ```
 
 If scripts are blocked:
 
 ```powershell
 Set-ExecutionPolicy -Scope Process -ExecutionPolicy RemoteSigned
-.\start.ps1
+.\setup\start.ps1
 ```
 
 ### macOS / Linux
 
 ```bash
-chmod +x start.sh
-./start.sh
+chmod +x setup/start.sh
+./setup/start.sh
 ```
 
 ### Manual startup (any OS)
@@ -111,8 +111,8 @@ npm run backend
 2. If prompted, choose account flow:
   - Sign in / Create account
   - Or continue as guest
-3. Upload dataset (try `adult.csv` from repo root).
-4. Optionally upload model (`.pkl`) for model audit.
+3. Upload dataset (try `data/adult.csv` from the repo).
+4. Optionally upload model (`models/adult_demo_model.pkl`) for model audit.
 5. Run audit and open Dataset Audit / Report.
 
 ## Save behavior
@@ -125,10 +125,10 @@ npm run backend
 ### Backend import/dependency error
 
 ```bash
-python -m pip install -r requirements.txt
+python -m pip install -r docs/requirements.txt
 ```
 
-If using venv, ensure script uses that environment.
+If using a venv, ensure the script uses that environment.
 
 ### Port already in use
 
@@ -149,11 +149,10 @@ AUTH_REQUIRED=false
 ### Gemini rate limiting
 
 - Wait and retry.
-- Avoid running many audits at the exact same time on free tier.
+- Avoid running many audits at the exact same time on the free tier.
 
 ## Optional deploy notes
 
 - Frontend can be deployed with Firebase Hosting.
 - Backend can be deployed to Cloud Run.
-- For shared team backend, point all frontends to the same `VITE_API_URL`.
-
+- For a shared team backend, point all frontends to the same `VITE_API_URL`.
